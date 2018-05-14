@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -20,7 +21,8 @@ const httpOptions = {
 export class HotelService {
 
 
-  private hotelsUrl = 'http://128.199.60.22:9090/hotels';  // URL to web api
+  private hotelsUrl = 'http://128.199.60.22:9090/hotels';
+  private hotelUrl = 'http://128.199.60.22:9090/hotel';// URL to web api
 
   constructor(
     private http: HttpClient,
@@ -51,8 +53,8 @@ export class HotelService {
   }
 
   /** GET hotel by id. Will 404 if id not found */
-  getHotel(id: number): Observable<Hotel> {
-    const url = `${this.hotelsUrl}/${id}`;
+  getHotel(id: string): Observable<Hotel> {
+    const url = `${this.hotelUrl}/${id}`;
     return this.http.get<Hotel>(url, httpOptions).pipe(
       tap(_ => this.log(`fetched hotel id=${id}`)),
       catchError(this.handleError<Hotel>(`getHotel id=${id}`))

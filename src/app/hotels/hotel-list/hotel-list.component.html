@@ -12,7 +12,7 @@
 
 <ul class="hotels">
   <li *ngFor="let hotel of hotels">
-    <a routerLink="/hotel-detail/{{hotel.id}}">
+    <a routerLink="/hotel/{{hotel.id}}">
       <!--<span class="badge">{{hotel.id}}</span>--> <!--{{hero.name}}-->
       <div *ngFor="let hotel_name of hotel.name">
         <div *ngIf="hotel_name.language == 'ru'">{{hotel_name.value}}</div>

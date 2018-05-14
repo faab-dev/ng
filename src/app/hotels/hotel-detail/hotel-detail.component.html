@@ -1,3 +1,14 @@
 <p>
   hotel-detail works!
 </p>
+
+<div *ngIf="hotel">
+  <div><span>id: </span>{{hotel}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="hotel.id" placeholder="name"/>
+    </label>
+  </div>
+  <!--<button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>-->
+</div>
