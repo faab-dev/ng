@@ -2,10 +2,10 @@ import { NgModule }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 import { FormsModule }    from '@angular/forms';
 
-import { HotelListComponent }    from './hotel-list.component';
-import { HotelDetailComponent }  from './hotel-detail.component';
+import { HotelListComponent }    from './hotel-list/hotel-list.component';
+import { HotelDetailComponent }  from './hotel-detail/hotel-detail.component';
 
-import { HotelService } from '../hotel.service';
+import { HotelService } from './hotel.service';
 
 import { HotelsRoutingModule } from './hotels-routing.module';
 

@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hotel } from './hotel';
-import { MessageService } from './message.service';
+import { MessageService } from '../message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
