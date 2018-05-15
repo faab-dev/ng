@@ -1,9 +1,10 @@
 <h1>{{title}}</h1>
 <nav>
   <!-- routerLinkActive="active" -->
-  <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+  <a routerLink="/users" routerLinkActive="active">Users</a>
   <!--<a routerLink="/heroes" routerLinkActive="active">Heroes</a>-->
   <a routerLink="/hotels" routerLinkActive="active">Hotels</a>
 </nav>
 <router-outlet></router-outlet>
-<app-messages></app-messages>
+<router-outlet name="popup"></router-outlet>
+<!--<app-messages></app-messages>-->

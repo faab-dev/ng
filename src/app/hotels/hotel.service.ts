@@ -1,11 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Hotel } from './hotel';
+export class Hotel {
+  id: string; // number;
+  status: string;
+  name: any | null; // string[]
+  settings: any | null;
+  rooms: any | null;
+  extra: string;
+}
+
+// "name":[
+// {"whenCreated":1525324627524,"whenUpdated":1525324627524,"id":"3ed0a590-29ca-44cc-ab00-94b1759909eb","language":"ru","value":"Отель АртиЛенд"},
+// {"whenCreated":1525324627525,"whenUpdated":1525324627525,"id":"b395fc08-c5e2-44d6-a848-a809a514b5e5","language":"en","value":"Artiland"}],
+// "settings":[],"rooms":[],"extra":"READY"}
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
 import { MessageService } from '../message.service';
 
 const httpOptions = {
@@ -17,21 +30,34 @@ const httpOptions = {
   })
 };
 
+
+function myPrivateFunction() {
+  console.log("My property: " + this.prop);
+}
+
 @Injectable({ providedIn: 'root' })
 export class HotelService {
 
-
-  private hotelsUrl = 'http://128.199.60.22:9090/hotels';
-  private hotelUrl = 'http://128.199.60.22:9090/hotel';// URL to web api
+  private hotelsUrl = 'hotels';
+  private hotelUrl = 'hotel';
+  private url = environment.api_url;
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+    // private environment: environment
+  ) {
+    myPrivateFunction.bind(this)();
+  }
+
+  /*getUrl(url_type: string): {
+    return this.url;
+  }*/
 
   /** GET hotels from the server */
   getHotels (): Observable<Hotel[]> {
-    return this.http.get<Hotel[]>(this.hotelsUrl, httpOptions)
+    const url = this.url+'/'+this.hotelsUrl;
+    return this.http.get<Hotel[]>(url, httpOptions)
       .pipe(
         tap(hotels => this.log(`fetched hotels`)),
         catchError(this.handleError('getHotels', []))
@@ -40,7 +66,7 @@ export class HotelService {
 
   /** GET hotel by id. Return `undefined` when id not found */
   getHotelNo404<Data>(id: number): Observable<Hotel> {
-    const url = `${this.hotelsUrl}/?id=${id}`;
+    const url = `${this.url+'/'+this.hotelsUrl}/?id=${id}`;
     return this.http.get<Hotel[]>(url)
       .pipe(
         map(hotels => hotels[0]), // returns a {0|1} element array
@@ -54,7 +80,7 @@ export class HotelService {
 
   /** GET hotel by id. Will 404 if id not found */
   getHotel(id: string): Observable<Hotel> {
-    const url = `${this.hotelUrl}/${id}`;
+    const url = `${this.url+'/'+this.hotelUrl}/${id}`;
     return this.http.get<Hotel>(url, httpOptions).pipe(
       tap(_ => this.log(`fetched hotel id=${id}`)),
       catchError(this.handleError<Hotel>(`getHotel id=${id}`))

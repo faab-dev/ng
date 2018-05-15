@@ -1,7 +1,9 @@
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import { Hotel } from '../hotel';
-import { HotelService } from '../hotel.service';
+import { Hotel, HotelService } from '../hotel.service';
 
 @Component({
   selector: 'app-hotel-list',
@@ -9,29 +11,48 @@ import { HotelService } from '../hotel.service';
   styleUrls: ['./hotel-list.component.css']
 })
 
+// ['/hero', hero.id]
 
-
-
-/*@Component({
-    selector: 'app-hotels',
-    templateUrl: './hotels.component.html',
-    styleUrls: ['./hotels.component.css']
-})*/
 
 export class HotelListComponent implements OnInit {
 
-    hotels: Hotel[];
 
-    constructor(private hotelService: HotelService) { }
 
-    ngOnInit() {
-        this.getHotels();
-    }
+  hotels$: Observable<Hotel[]>;
 
-    getHotels(): void {
-        this.hotelService.getHotels()
-            .subscribe(hotels => this.hotels = hotels);
-    }
+  private selectedId: string;
+
+
+  constructor(
+    private hotelService: HotelService,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    // this.getHotels();
+    this.hotels$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        // (+) before `params.get()` turns the string into a number
+        this.selectedId = params.get('id');
+        return this.hotelService.getHotels();
+      })
+    );
+  }
+
+  getHotels(): void {
+
+
+    /*this.hotelService.getHotels()
+      .subscribe(hotels => this.hotels = hotels);
+
+    this.hotels = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        // (+) before `params.get()` turns the string into a number
+        this.selectedId = params.get('id');
+        return this.hotelService.getHotels();
+      })
+    );*/
+  }
 
 
 }

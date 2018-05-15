@@ -1,14 +1,39 @@
+<!--
 <p>
   hotel-detail works!
 </p>
+-->
 
+<!--
 <div *ngIf="hotel">
-  <div><span>id: </span>{{hotel}}</div>
+  <div><span>id: </span>{{hotel.id}}</div>
   <div>
-    <label>name:
-      <input [(ngModel)]="hotel.id" placeholder="name"/>
+    <label *ngFor="let hotel_name of hotel.name">
+      <div *ngIf="hotel_name.language == 'ru'">name:
+        &lt;!&ndash;<div >{{hotel_name.value}}</div>&ndash;&gt;
+        <input [(ngModel)]="hotel_name.value" placeholder="name"/>
+      </div>
     </label>
   </div>
-  <!--<button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>-->
+  &lt;!&ndash;<button (click)="goBack()">go back</button>
+  <button (click)="save()">save</button>&ndash;&gt;
+</div>
+-->
+
+<h2>HEROES</h2>
+<div *ngIf="hotel$ | async as hotel">
+  <div *ngFor="let hotel_name of hotel.name">
+    <div *ngIf="hotel_name.language == 'ru'">
+      <h3>"{{ hotel_name.value }}"</h3>
+      <div>
+        <label>Id: </label>{{ hotel.id }}</div>
+      <div>
+        <label>Name: </label>
+        <input [(ngModel)]="hotel_name.value" placeholder="name"/>
+      </div>
+      <p>
+        <button (click)="gotoHotels(hotel)">Back</button>
+      </p>
+    </div>
+  </div>
 </div>
