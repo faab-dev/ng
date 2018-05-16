@@ -1,0 +1,22 @@
+<h2>LOGIN</h2>
+<p>{{message}}</p>
+<p>
+  <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
+  <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+</p>
+
+
+<div>
+  <input #login (keyup.enter)="onLogin(login.value, password.value)" placeholder="Login" value="admin">
+  <p>{{values}}</p>
+</div>
+
+<div>
+  <input #password (keyup.enter)="onLogin(login.value, password.value)" placeholder="Password" type="password" value="123456">
+  <p>{{value}}</p>
+</div>
+
+<div>
+  <button (click)="onLogin(login.value, password.value)">Login</button>
+</div>
+

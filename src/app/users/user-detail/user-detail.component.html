@@ -1,3 +1,13 @@
-<p>
-  user-detail works!
-</p>
+<div *ngIf="user">
+  <h3>"{{ editLogin }}"</h3>
+  <div>
+    <label>Id: </label>{{ user.id }}</div>
+  <div>
+    <label>Name: </label>
+    <input [(ngModel)]="editLogin" placeholder="login"/>
+  </div>
+  <p>
+    <button (click)="save()">Save</button>
+    <button (click)="cancel()">Cancel</button>
+  </p>
+</div>

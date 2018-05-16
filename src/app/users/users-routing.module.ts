@@ -6,7 +6,18 @@ import { UsersHomeComponent } from './users-home/users-home.component';
 import { UserDetailComponent }  from './user-detail/user-detail.component';
 import { UserListComponent }  from './user-list/user-list.component';
 
+import { CanDeactivateGuard }    from '../can-deactivate-guard.service';
+
+import { UserDetailResolver }   from './user-detail/user-detail-resolver.service';
+
+
+
 const usersRoutes: Routes = [
+  {
+    path: '',
+    redirectTo: '/users',
+    pathMatch: 'full'
+  },
   {
     path: 'users',
     component: UsersComponent,
@@ -17,13 +28,35 @@ const usersRoutes: Routes = [
         children: [
           {
             path: ':id',
-            component: UserDetailComponent
+            component: UserDetailComponent,
+            canDeactivate: [CanDeactivateGuard]
           },
           {
             path: '',
             component: UsersHomeComponent
           }
         ]
+      }
+    ]
+  },
+  /*{
+    path: '',
+    redirectTo: '/users',
+    pathMatch: 'full'
+  },*/
+  {
+    path: 'user',
+    component: UserDetailComponent,
+    pathMatch: 'full',
+    children: [
+      {
+        path: ':id',
+        component: UserDetailComponent,
+        canDeactivate: [CanDeactivateGuard]
+      },
+      {
+        path: '',
+        component: UsersHomeComponent
       }
     ]
   }
@@ -35,17 +68,9 @@ const usersRoutes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    UserDetailResolver
   ]
 })
 export class UsersRoutingModule { }
-
-/*@NgModule({
-  imports: [
-    RouterModule.forChild(usersRoutes)
-  ],
-  exports: [
-    RouterModule
-  ]
-})
-export class UsersRoutingModule { }*/
-// export class HotelsRoutingModule { }

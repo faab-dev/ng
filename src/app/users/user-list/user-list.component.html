@@ -1,3 +1,11 @@
-<p>
-  user-list works!
-</p>
+<h2>Users</h2>
+
+<ul class="items">
+  <li *ngFor="let user of users$ | async" [class.selected]="user.id === selectedId">
+    <a [routerLink]="['/user', user.id]">
+      <span class="badge">{{ user.id }}</span>{{ user.login }}
+    </a>
+  </li>
+</ul>
+
+<router-outlet></router-outlet>

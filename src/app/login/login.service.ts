@@ -2,14 +2,28 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-export class Hotel {
-  id: string; // number;
-  status: string;
-  name: object[]; // string[]
-  settings: object[];
-  rooms: object[];
-  extra: string;
+// import { User } from '../users/user.service';
+
+export class Login {
+  login: string;
+  password: string;
 }
+
+export class LoggedUser {
+  id: string; // number;
+  /*status: string;
+  name: string; // string[]
+  type: string;
+  public login: string;
+  appID: string;
+  partnerID: string | null;
+  hotelID: string | null;
+  access: object[];
+  roles: object[];
+  whenCreated: number;
+  whenUpdated: number;*/
+}
+
 
 // "name":[
 // {"whenCreated":1525324627524,"whenUpdated":1525324627524,"id":"3ed0a590-29ca-44cc-ab00-94b1759909eb","language":"ru","value":"Отель АртиЛенд"},
@@ -26,64 +40,32 @@ const httpOptions = {
     'Content-Type': 'application/json',
     'X-API-VERSION': '1',
     'X-HRC-APP-KEY': 'e34ab8cb0c62481a1a0a0aa63a8fa344',
-    'Authorization': '7a67f85b-c59e-40be-91c8-29683047b750'
+    // 'Authorization': '7a67f85b-c59e-40be-91c8-29683047b750'
   })
 };
 
-
-function myPrivateFunction() {
-  console.log("My property: " + this.prop);
-}
-
 @Injectable({ providedIn: 'root' })
-export class HotelService {
+export class LoginService {
 
-  private hotelsUrl = 'hotels';
-  private hotelUrl = 'hotel';
+  private loginUrl = 'signin';
   private url = environment.api_url;
+
+  public user$: object;
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
     // private environment: environment
-  ) {
-    myPrivateFunction.bind(this)();
-  }
+  ) {}
 
-  /*getUrl(url_type: string): {
-    return this.url;
-  }*/
 
-  /** GET hotels from the server */
-  getHotels (): Observable<Hotel[]> {
-    const url = this.url+'/'+this.hotelsUrl;
-    return this.http.get<Hotel[]>(url, httpOptions)
-      .pipe(
-        tap(hotels => this.log(`fetched hotels`)),
-        catchError(this.handleError('getHotels', []))
-      );
-  }
+  postSignIn(login: Login): Observable<LoggedUser> {
 
-  /** GET hotel by id. Return `undefined` when id not found */
-  getHotelNo404<Data>(id: number): Observable<Hotel> {
-    const url = `${this.url+'/'+this.hotelsUrl}/?id=${id}`;
-    return this.http.get<Hotel[]>(url)
-      .pipe(
-        map(hotels => hotels[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hotel id=${id}`);
-        }),
-        catchError(this.handleError<Hotel>(`getHotel id=${id}`))
-      );
-  }
 
-  /** GET hotel by id. Will 404 if id not found */
-  getHotel(id: string): Observable<Hotel> {
-    const url = `${this.url+'/'+this.hotelUrl}/${id}`;
-    return this.http.get<Hotel>(url, httpOptions).pipe(
-      tap(_ => this.log(`fetched hotel id=${id}`)),
-      catchError(this.handleError<Hotel>(`getHotel id=${id}`))
+    const url = this.url+'/'+this.loginUrl;
+    return this.http.post<LoggedUser>(url, login, httpOptions).pipe(
+      tap((user: LoggedUser) => this.log(`added hotel w/ id=${user.id}`)),
+      catchError(this.handleError<LoggedUser>('postSignIn'))
     );
   }
 
@@ -150,7 +132,7 @@ export class HotelService {
 
   /** Log a HotelService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('HotelService: ' + message);
+    this.messageService.add('LoginService: ' + message);
   }
 
 }

@@ -10,6 +10,7 @@ import { UserListComponent } from './user-list/user-list.component';
 /*import { HotelService } from './hotel.service';*/
 
 import { UsersRoutingModule } from './users-routing.module';
+import {UserService} from "./user.service";
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { UsersRoutingModule } from './users-routing.module';
     UserDetailComponent,
     UserListComponent
   ],
-  providers: [ /*HotelService*/ ]
+  providers: [ /*UserService*/ ]
 })
 export class UsersModule {}

@@ -11,9 +11,6 @@ import { Hotel, HotelService } from '../hotel.service';
   styleUrls: ['./hotel-list.component.css']
 })
 
-// ['/hero', hero.id]
-
-
 export class HotelListComponent implements OnInit {
 
 
@@ -37,21 +34,6 @@ export class HotelListComponent implements OnInit {
         return this.hotelService.getHotels();
       })
     );
-  }
-
-  getHotels(): void {
-
-
-    /*this.hotelService.getHotels()
-      .subscribe(hotels => this.hotels = hotels);
-
-    this.hotels = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => {
-        // (+) before `params.get()` turns the string into a number
-        this.selectedId = params.get('id');
-        return this.hotelService.getHotels();
-      })
-    );*/
   }
 
 

@@ -1,33 +1,32 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ComposeMessageComponent }  from './compose-message/compose-message.component';
 import { PageNotFoundComponent }  from './page-not-found/page-not-found.component';
 
+import { CanDeactivateGuard }      from './can-deactivate-guard.service';
+
 const appRoutes: Routes = [
-  // { path: 'hotels', component: HotelsComponent },
-  // { path: 'hotel-detail/:id', component: HotelDetailComponent },
-  // { path: '', redirectTo: '/hotels', pathMatch: 'full' },
+  {
+    path: 'compose',
+    component: ComposeMessageComponent,
+    outlet: 'popup'
+  },
   { path: '',   redirectTo: '/hotels', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
-/*
-@NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
-})
-*/
-
-// debugging
 @NgModule({
   imports: [
     RouterModule.forRoot(
-        appRoutes,
+      appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
-    // other imports here
   ],
-  exports: [ RouterModule ]
+  exports: [
+    RouterModule
+  ],
+  providers: [
+    CanDeactivateGuard
+  ]
 })
-//export class AppModule { }
-
 export class AppRoutingModule {}
