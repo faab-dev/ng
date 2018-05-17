@@ -1,10 +1,8 @@
 import { Component }   from '@angular/core';
-import { ParamMap, Router, ActivatedRoute} from '@angular/router';
+import { Router} from '@angular/router';
 import { AuthService } from '../auth.service';
-import { switchMap } from 'rxjs/operators';
 
-import {Login, LoginService} from "./login.service";
-import {ConfigService} from "../config/config.service";
+import {authResponce, LoginService} from "./login.service";
 
 @Component({
   selector: 'app-login',
@@ -15,67 +13,58 @@ import {ConfigService} from "../config/config.service";
 export class LoginComponent {
   message: string;
 
-  value = '';
-  values = '';
-  selectedId;
-
-  loggedUser$: object;
-
-
   constructor(
     public authService: AuthService,
     public router: Router,
     private modelService: LoginService,
-    // private configService:ConfigService,
-    private route: ActivatedRoute
+    // private route: ActivatedRoute
   ) {
-
-    this.setMessage();
   }
 
   onLogin(login: string, password: string) {
-    let Login = {login: login, password: password};
+    var Login = {login: login, password: password};
     this.modelService.postSignIn(Login)
-      .subscribe(loggedUser => {
-        if(loggedUser.id) {
-          this.authService.isLoggedIn = true;
-          this.loggedUser$ = {id: loggedUser.id};
+      .subscribe(authResponce => {
 
-        }else{
-          this.authService.isLoggedIn = false;
-          this.loggedUser$ = {};
+        if(!authResponce.accessToken || !authResponce.userID) {
+          // @TODO Develop error handler
+          console.log("wrong access token");
+          this.logout();
+          return;
         }
 
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/hotels';
-
-        // Redirect the user
-        this.router.navigate([redirect]);
+        this.getUserByAuth(authResponce);
       });
   }
 
+  getUserByAuth(authResponce:authResponce) {
+    this.authService.getUser(authResponce.userID, authResponce.accessToken)
+      .subscribe(user => {
 
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-  }
 
-  login() {
-    this.message = 'Trying to log in ...';
+        if( !user ){
+          // @TODO Develop error handler
+          console.log("no user");
+          this.logout();
+          return;
+        }
+        if( !this.authService.setAuthData(user, authResponce) ){
+          // @TODO Develop error handler
+          console.log("wrong access data");
+          this.logout();
+          return;
+        }
 
-    this.authService.login().subscribe(() => {
-      this.setMessage();
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/hotels';
+        window.localStorage.token = JSON.stringify({ accessToken: authResponce.accessToken, id: authResponce.userID });
 
-        // Redirect the user
+        let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/admin/hotels';
+
         this.router.navigate([redirect]);
-      }
-    });
+
+      });
   }
 
   logout() {
     this.authService.logout();
-    this.setMessage();
   }
 }

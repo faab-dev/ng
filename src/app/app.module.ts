@@ -11,13 +11,13 @@ import { Router } from '@angular/router';
 import { AppComponent }         from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
 
-import { HotelsModule }    from './hotels/hotels.module';
-import { UsersModule }      from './users/users.module';
+import { LoginModule }      from './login/login.module';
+// import { HotelsModule }    from './hotels/hotels.module';
+// import { UsersModule }      from './users/users.module';
 import { AdminModule }      from './admin/admin.module';
 
 import { ComposeMessageComponent } from './compose-message/compose-message.component';
-import { LoginRoutingModule }      from './login/login-routing.module';
-import { LoginComponent } from './login/login.component';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { DialogService }           from './dialog.service';
@@ -32,17 +32,17 @@ import { ConfigComponent } from './config/config.component';
     FormsModule,
     HttpClientModule,
 
-    HotelsModule,
-    UsersModule,
     AdminModule,
-    LoginRoutingModule,
+    // HotelsModule,
+    // UsersModule,
+    LoginModule,
+
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
   declarations: [
     AppComponent,
     ComposeMessageComponent,
-    LoginComponent,
     PageNotFoundComponent,
     ConfigComponent,
   ],

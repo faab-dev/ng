@@ -13,11 +13,11 @@ import { UserDetailResolver }   from './user-detail/user-detail-resolver.service
 
 
 const usersRoutes: Routes = [
-  {
+  /*{
     path: '',
     redirectTo: '/users',
     pathMatch: 'full'
-  },
+  },*/
   {
     path: 'users',
     component: UsersComponent,
@@ -44,7 +44,7 @@ const usersRoutes: Routes = [
     redirectTo: '/users',
     pathMatch: 'full'
   },*/
-  {
+  /*{
     path: 'user',
     component: UserDetailComponent,
     pathMatch: 'full',
@@ -59,7 +59,7 @@ const usersRoutes: Routes = [
         component: UsersHomeComponent
       }
     ]
-  }
+  }*/
 ];
 
 @NgModule({

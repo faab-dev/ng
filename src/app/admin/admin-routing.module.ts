@@ -1,7 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './admin.component';
 import { AdminDashbordComponent } from './admin-dashbord/admin-dashbord.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageHotelsComponent } from './manage-hotels/manage-hotels.component';
@@ -20,9 +20,11 @@ const adminRoutes: Routes = [
         children: [
           { path: 'users', component: ManageUsersComponent },
           { path: 'hotels', component: ManageHotelsComponent },
-          { path: '', component: AdminDashbordComponent }
+          { path: 'dashbord', component: AdminDashbordComponent},
+          { path: '', redirectTo: 'dashbord', pathMatch: 'full'}
         ]
       }
+
     ]
   }
 ];

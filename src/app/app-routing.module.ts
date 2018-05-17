@@ -11,7 +11,7 @@ const appRoutes: Routes = [
     component: ComposeMessageComponent,
     outlet: 'popup'
   },
-  { path: '',   redirectTo: '/hotels', pathMatch: 'full' },
+  { path: '',   redirectTo: '/admin/hotels', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

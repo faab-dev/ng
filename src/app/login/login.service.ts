@@ -9,20 +9,12 @@ export class Login {
   password: string;
 }
 
-export class LoggedUser {
-  id: string; // number;
-  /*status: string;
-  name: string; // string[]
-  type: string;
-  public login: string;
-  appID: string;
-  partnerID: string | null;
-  hotelID: string | null;
-  access: object[];
-  roles: object[];
-  whenCreated: number;
-  whenUpdated: number;*/
+export class authResponce {
+  accessToken: string;
+  userID: string;
 }
+
+
 
 
 // "name":[
@@ -47,39 +39,38 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class LoginService {
 
-  private loginUrl = 'signin';
-  private url = environment.api_url;
+  private url_signin:string = 'signin';
+  private url:string;
 
   public user$: object;
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    // private environment: environment
-  ) {}
-
-
-  postSignIn(login: Login): Observable<LoggedUser> {
-
-
-    const url = this.url+'/'+this.loginUrl;
-    return this.http.post<LoggedUser>(url, login, httpOptions).pipe(
-      tap((user: LoggedUser) => this.log(`added hotel w/ id=${user.id}`)),
-      catchError(this.handleError<LoggedUser>('postSignIn'))
-    );
+  ) {
+    this.url = String(environment.api_url);
+    /*this.httpOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-API-VERSION': String(environment.x_api_version),
+      'X-HRC-APP-KEY': String(environment.x_hrc_app_key)
+    });*/
   }
 
-  /* GET hotels whose name contains search term */
-  /*searchHotels(term: string): Observable<Hotel[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hotel array.
-      return of([]);
-    }
-    return this.http.get<Hotel[]>(`api/hotels/?name=${term}`).pipe(
-      tap(_ => this.log(`found hotels matching "${term}"`)),
-      catchError(this.handleError<Hotel[]>('searchHotels', []))
+
+  postSignIn(login: Login): Observable<authResponce> {
+    let url = this.url+'/'+this.url_signin;
+    return this.http.post<authResponce>(url, login, httpOptions).pipe(
+      tap((user: authResponce) => this.log(`added hotel w/ id=${user.userID}`)),
+      catchError(this.handleError<authResponce>('postSignIn'))
     );
-  }*/
+
+  }
+
+  setUser(){
+
+  }
+
+
 
   //////// Save methods //////////
 
@@ -120,7 +111,7 @@ export class LoginService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.log(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);

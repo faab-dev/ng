@@ -2,57 +2,130 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import {tap, delay, catchError, map} from 'rxjs/operators';
-// import  'rxjs/add/operator/map';
 
-// import 'rxjs/add/operator/map';
+export class loggedUser {
+  id: string;
+  status: string;
+  name: string;
+  type: string;
+  login: string;
+  appID: string;
+  partnerID: string | null;
+  hotelID: string | null;
+  access: object[];
+  roles: object[];
+  whenCreated: number;
+  whenUpdated: number;
+}
 
 import {environment} from "../environments/environment";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MessageService} from "./message.service";
 
-export class Login {
-  login: string;
-  password: string;
-}
-
-export class LoggedUser {
-  accessToken:string;
-  userID:string;
-  type:string;
-  partnerID:string | any;
-}
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'X-API-VERSION': '1',
+    'X-HRC-APP-KEY': 'e34ab8cb0c62481a1a0a0aa63a8fa344',
+    // 'Authorization': '7a67f85b-c59e-40be-91c8-29683047b750'
+  })
+};
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   isLoggedIn:boolean = false;
   whenChecked:number = 0;
   redirectUrl:string;
-  private url:string;
-  private loginUrl:string = 'signin';
-  private httpOptions;
 
-  public user$: object;
+  private url_get_user:string = 'user';
+  private url:string;
+
+
+  user_id:string | boolean;
+  roles:object[] | boolean;
+  access:object[] | boolean;
+  type:string | boolean;
+  login:string | boolean;
+  accessToken:string |boolean;
+
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
   ){
-   this.url = environment.api_url;
-   this.httpOptions = new HttpHeaders({
-     'Content-Type': 'application/json',
-     'X-API-VERSION': String(environment.x_api_version),
-     'X-HRC-APP-KEY': String(environment.x_hrc_app_key)
-   })
+    this.url = String(environment.api_url);
   }
 
-  login(): Observable<boolean> {
+  /** GET user by id. Will 404 if id not found */
+  getUser(id: string, accessToken:string): Observable<loggedUser> {
+
+    let url = `${this.url+'/'+this.url_get_user}/${id}`,
+      httpOptions_access = httpOptions;
+
+    httpOptions_access.headers = httpOptions_access.headers.set('Authorization', accessToken);
+    return this.http.get<loggedUser>(url, httpOptions_access).pipe(
+      tap(_ => this.log(`fetched user id=${id}`)),
+      catchError(this.handleError<loggedUser>(`getUser id=${id}`))
+    );
+
+  }
+
+  /** GET user by id. Will 404 if id not found */
+  /*getUser1(id: string, accessToken:string): Observable<boolean> {
+
+    let url = `${this.url+'/'+this.url_get_user}/${id}`,
+      httpOptions_access = httpOptions;
+
+    httpOptions_access.headers = httpOptions_access.headers.set('Authorization', accessToken);
+    return this.http.get (url, httpOptions_access).pipe(
+      tap(( user = (true) ? of(true) : of (false) ) => this.log(`fetched user id=${id}`)),
+      catchError(this.handleError(`getUser id=${id}`))
+    );
+
+  }*/
+
+  actionLogin(): Observable<boolean> {
     return of(true).pipe(
       delay(1000),
       tap(val => this.isLoggedIn = true)
     );
   }
 
+  setAuthData(user, auth):boolean{
+    if(
+      typeof user.id == "string"
+      && Array.isArray(user.roles)
+      && Array.isArray(user.access)
+      && typeof user.login == "string"
+      && typeof user.type == "string"
+      && typeof auth.accessToken == "string"
+    ){
+      this.user_id = user.id;
+      this.roles = user.roles;
+      this.access = user.access;
+      this.login = user.login;
+      this.type = user.type;
+      this.accessToken = auth.accessToken;
+      this.isLoggedIn = true;
+      this.whenChecked = Math.floor(Date.now() / 1000);
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  private resetAuthData(){
+    this.user_id = false;
+    this.roles = false;
+    this.access = false;
+    this.login = false;
+    this.type = false;
+    this.accessToken = false;
+  }
+
   logout(): void {
+    this.resetAuthData();
+    window.localStorage.removeItem("token");
     this.isLoggedIn = false;
   }
 
@@ -60,7 +133,7 @@ export class AuthService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.log(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
       this.log(`${operation} failed: ${error.message}`);
