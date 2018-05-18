@@ -1,13 +1,81 @@
-<h2>LOGIN</h2>
-<div>
-  <input #login (keyup.enter)="onLogin(login.value, password.value)" placeholder="Login">
-</div>
+<div id="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <section class="login">
 
-<div>
-  <input #password (keyup.enter)="onLogin(login.value, password.value)" placeholder="Password" type="password">
-</div>
+        <div class="row ">
+          <div class="col-lg-12">
+            <a href="#" class="logo_center"></a>
+          </div>
+        </div>
 
-<div>
-  <button (click)="onLogin(login.value, password.value)">Login</button>
+        <div class="row">
+          <div class="col-lg-12">
+
+            <div class="login-form-wrapper">
+              <form class="login_form" autocomplete="off" id="login_form">
+
+                <app-language-login></app-language-login>
+                <!-- (voted)="onVoted($event)" -->
+
+                <!-- /div.enter-langs -->
+
+                <div class="login-title">
+                  <span >Вход в личный кабинет</span> <!--data-bind="i18n: $root.lang, iText:'login_title'" -->
+                  <span class="login-line"></span>
+                </div>
+
+                <div class="login-inputs-wrapper">
+                  <div>
+                    <input #login (keyup.enter)="onLogIn(login.value, password.value)" placeholder="Login" type="text" class="form-control client-name input adaptive">
+                  </div>
+
+                  <div>
+                    <input #password (keyup.enter)="onLogIn(login.value, password.value)" placeholder="Password" type="password" class="form-control client-password input adaptive">
+                  </div>
+
+                  <div>
+                    <button (click)="onLogIn(login.value, password.value, $event)" class="btn btn-primary submit adaptive small-text">Login</button>
+                  </div>
+                </div>
+
+
+                <!--<div class="form-title">
+                  <span data-bind="i18n: $root.lang, iText:'login_title'">Вход в личный кабинет</span>
+                  <span class="form-line"></span>
+                </div>-->
+                <!-- /div.form-title -->
+
+                <!--<div class="enter-inputs-wrapper">
+
+                  <input id="login" name="login" type="text" class="form-control client-name input adaptive" maxlength="64" autocomplete="off" data-bind="value: $root.login, i18n: $root.lang(), iPlaceholder: 'users_login', event: { 'keyup': $root.eventKeyupLoginForms }" data-parsley-required="true" placeholder="Логин">&lt;!&ndash; /input#login &ndash;&gt;
+                  <br>
+
+                  <input id="password" name="password" type="password" class="form-control client-password input adaptive" autocomplete="off" data-bind="value: $root.password, i18n: $root.lang(), iPlaceholder: 'page_pass', event: { 'keyup': $root.eventKeyupLoginForms }" data-parsley-required="true" placeholder="Пароль">&lt;!&ndash; /input#password &ndash;&gt;
+                  <br>
+
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <a href="#" class="btn btn-primary submit adaptive small-text ru" data-bind="click: $root.triggerSignin">
+                        <span data-bind="i18n: $root.lang, iText:'login_btn'">Войти</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="form-error" data-bind="i18n: $root.lang(), iText: 'message_error_wrong_password'">Неправильный логин или пароль.</div>
+
+                </div>-->
+                <!-- /div.enter-inputs-wrapper -->
+
+              </form>
+            </div>
+
+
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </div>
 </div>
 

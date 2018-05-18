@@ -1,0 +1,14 @@
+.flag-langs-container {
+  width: 100%;
+  margin: 2% auto;
+}
+
+.flag-langs {
+  display: inline-block;
+  width: 40px;
+  margin-right: 5px;
+}
+
+.flag-langs img {
+  width: 100%;
+}

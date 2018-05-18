@@ -1,0 +1,144 @@
+#container {
+  background: #f1f0f5;
+  background: url(/assets/images/enter-bg.jpg) center center no-repeat;
+  background-size: cover;
+  min-height: calc(100vh);
+  position: relative;
+  width: 100%;
+}
+
+.login-form-wrapper {
+  background: url(/assets/images/enter-form.jpg) center center;
+  width: 595px;
+  margin: 5% auto;
+  /*margin-top: ;*/
+  position: relative;
+  text-align: center;
+  color: #fff;
+  padding: 50px 0;
+  -webkit-box-shadow: 0 15px 10px -10px rgba(0,0,0,.5);
+  -moz-box-shadow: 0 15px 10px -10px rgba(0,0,0,.5);
+  box-shadow: 0 15px 10px -10px rgba(0,0,0,.5);
+}
+
+.login-form-wrapper:before {
+  display: block;
+  content: '';
+  border: 3px solid #cdc2a7;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+}
+
+.login {
+  margin-top: 15%;
+  text-align: center;
+}
+
+.logo_center {
+  display: inline-block;
+  width: 206px;
+  height: 74px;
+  background: url(/assets/images/enter-logo.png) center center no-repeat;
+}
+
+.login-title {
+  font: 700 36px/42px Harmonia,Helvetica,Arial,sans-serif;
+  text-transform: uppercase;
+}
+
+.login-line {
+  display: block;
+  margin: 15px auto;
+  width: 54px;
+  height: 3px;
+  background-color: #cdc2a7;
+}
+
+.login-inputs-wrapper {
+  text-align: center;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.login-inputs-wrapper input {
+  position: relative;
+  width: 354px;
+  background: #fff url(/assets/images/form-icons.png) -999px no-repeat;
+  border: 0;
+  margin: 10px 0;
+  padding: 25px 25px 25px 55px!important;
+  font: 18px DinTextC,Helvetica,Arial,sans-serif;
+  box-sizing: border-box;
+  -webkit-border-radius: 35px;
+  -moz-border-radius: 35px;
+  -ms-border-radius: 35px;
+  border-radius: 35px;
+  -webkit-transition: all .2s ease-out 0s;
+  -moz-transition: all .2s ease-out 0s;
+  -o-transition: all .2s ease-out 0s;
+  transition: all .2s ease-out 0s;
+  -webkit-box-shadow: inset 0 4px 0 #d1d1d1;
+  -moz-box-shadow: inset 0 4px 0 #d1d1d1;
+  box-shadow: inset 0 4px 0 #d1d1d1;
+}
+
+.login-inputs-wrapper .submit {
+  width: 354px;
+  border: 0;
+  position: relative;
+  color: #2f2b44!important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.4);
+  font: 500 18px/24px DinTextC,Helvetica,Arial,sans-serif;
+  background-color: #bfb08d!important;
+  padding: 15px 0!important;
+  height: 50px;
+  margin: 10px 0;
+  text-transform: uppercase;
+  -webkit-box-shadow: inset 0 70px 50px -30px #e2dccc!important;
+  -moz-box-shadow: inset 0 70px 50px -30px #e2dccc!important;
+  box-shadow: inset 0 70px 50px -30px #e2dccc!important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  border-radius: 50px;
+  -webkit-transition: all .2s ease-out 0s;
+  -moz-transition: all .2s ease-out 0s;
+  -o-transition: all .2s ease-out 0s;
+  transition: all .2s ease-out 0s;
+}
+
+.login-inputs-wrapper .submit:active {
+  top: 1px;
+  background: #b7a87d;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.login-inputs-wrapper .submit:hover {
+  background-color: #dbd3bf!important;
+}
+
+.client-name {
+  background: #fff url(/assets/images/ic_role_reception.svg) 22px 15px no-repeat;
+  background-size: 22px;
+}
+
+.client-password {
+  background: #fff url(/public/images/password.png) 22px 15px no-repeat;
+}
+
+.adaptive.form-control {
+  height: 28px;
+  line-height: 28px;
+  padding: 0 12px;
+}
+
+
+

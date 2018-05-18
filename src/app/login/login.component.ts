@@ -2,7 +2,10 @@ import { Component }   from '@angular/core';
 import { Router} from '@angular/router';
 import { AuthService } from '../auth.service';
 
-import {authResponce, LoginService} from "./login.service";
+
+import {authResponce, LoginService, Login} from "./login.service";
+
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-login',
@@ -10,8 +13,12 @@ import {authResponce, LoginService} from "./login.service";
   styleUrls: ['./login.component.css']
 })
 
+
+
 export class LoginComponent {
-  message: string;
+
+  languages:object[];
+  current_language:string = 'ru';
 
   constructor(
     public authService: AuthService,
@@ -19,12 +26,30 @@ export class LoginComponent {
     private modelService: LoginService,
     // private route: ActivatedRoute
   ) {
+    this.languages = environment.languages;
   }
 
-  onLogin(login: string, password: string) {
-    var Login = {login: login, password: password};
+  onLogIn(login: string, password: string, $event) {
+
+    if( $event ){
+      $event.preventDefault();
+    }
+    login = String(login).trim();
+    password = String(password).trim();
+
+    if( !login || !password ){
+      console.log('login or pass is empty');
+      return;
+    }
+
+    var Login:Login = {login: login, password: password};
+    console.log("Login");
+    console.log(Login);
+
     this.modelService.postSignIn(Login)
       .subscribe(authResponce => {
+
+        console.log("postSignIn");
 
         if(!authResponce.accessToken || !authResponce.userID) {
           // @TODO Develop error handler
@@ -38,8 +63,14 @@ export class LoginComponent {
   }
 
   getUserByAuth(authResponce:authResponce) {
+    console.log("getUserByAuth :: authResponce");
+    console.log(authResponce);
+
     this.authService.getUser(authResponce.userID, authResponce.accessToken)
       .subscribe(user => {
+
+        console.log("user");
+        console.log(user);
 
 
         if( !user ){

@@ -1,5 +1,6 @@
 import { NgModule }       from '@angular/core';
 // import { CommonModule }   from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
@@ -22,20 +23,27 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { DialogService }           from './dialog.service';
 import { ConfigComponent } from './config/config.component';
-
+import { LanguageModule } from "./language/language.module";
+import {LanguageLoginComponent} from "./language/language-login/language-login.component";
+import {LanguageService} from "./language/language.service";
 
 @NgModule({
   imports: [
     // CommonModule,
 
     BrowserModule,
+    NgbModule,
     FormsModule,
     HttpClientModule,
+
+    // LanguageModule,
 
     AdminModule,
     // HotelsModule,
     // UsersModule,
     LoginModule,
+
+
 
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -45,9 +53,11 @@ import { ConfigComponent } from './config/config.component';
     ComposeMessageComponent,
     PageNotFoundComponent,
     ConfigComponent,
+    // LanguageLoginComponent
   ],
   providers: [
-    DialogService
+    DialogService,
+    LanguageService
   ],
   bootstrap: [ AppComponent ]
 })

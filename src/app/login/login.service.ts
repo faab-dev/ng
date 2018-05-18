@@ -49,57 +49,31 @@ export class LoginService {
     private messageService: MessageService,
   ) {
     this.url = String(environment.api_url);
-    /*this.httpOptions = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-API-VERSION': String(environment.x_api_version),
-      'X-HRC-APP-KEY': String(environment.x_hrc_app_key)
-    });*/
   }
 
 
   postSignIn(login: Login): Observable<authResponce> {
+    console.log("login.service :: postSignIn ");
     let url = this.url+'/'+this.url_signin;
+
+    console.log("url");
+    console.log(url);
+
+    console.log("login");
+    console.log(login);
+
+    console.log("httpOptions")
+    console.log(httpOptions);
+
+
     return this.http.post<authResponce>(url, login, httpOptions).pipe(
-      tap((user: authResponce) => this.log(`added hotel w/ id=${user.userID}`)),
+      tap((auth: authResponce) => this.log(`Signed in userID=${auth.userID}`)),
       catchError(this.handleError<authResponce>('postSignIn'))
     );
 
   }
 
-  setUser(){
 
-  }
-
-
-
-  //////// Save methods //////////
-
-  /** POST: add a new hotel to the server */
-  /*addHotel (hotel: Hotel): Observable<Hotel> {
-    return this.http.post<Hotel>(this.hotelsUrl, hotel, httpOptions).pipe(
-      tap((hotel: Hotel) => this.log(`added hotel w/ id=${hotel.id}`)),
-      catchError(this.handleError<Hotel>('addHotel'))
-    );
-  }*/
-
-  /** DELETE: delete the hotel from the server */
-  /*deleteHotel (hotel: Hotel | number): Observable<Hotel> {
-    const id = typeof hotel === 'number' ? hotel : hotel.id;
-    const url = `${this.hotelsUrl}/${id}`;
-
-    return this.http.delete<Hotel>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted hotel id=${id}`)),
-      catchError(this.handleError<Hotel>('deleteHotel'))
-    );
-  }*/
-
-  /** PUT: update the hotel on the server */
-  /*updateHotel (hotel: Hotel): Observable<any> {
-    return this.http.put(this.hotelsUrl, hotel, httpOptions).pipe(
-      tap(_ => this.log(`updated hotel id=${hotel.id}`)),
-      catchError(this.handleError<any>('updateHotel'))
-    );
-  }*/
 
   /**
    * Handle Http operation that failed.
@@ -109,6 +83,8 @@ export class LoginService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
+
+      console.log("handleError");
 
       // TODO: send the error to remote logging infrastructure
       console.log(error); // log to console instead

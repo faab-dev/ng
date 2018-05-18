@@ -1,0 +1,20 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+                                        <g id="statistic.psd">
+                                            <defs>
+                                                <rect id="SVGID_1_" x="0" width="20" height="20"/>
+                                            </defs>
+                                            <clipPath id="SVGID_2_">
+                                                <use xlink:href="#SVGID_1_"  overflow="visible"/>
+                                            </clipPath>
+                                            <g id="Shape_24_copy" clip-path="url(#SVGID_2_)">
+                                                <g>
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" fill="#0096E2" d="M3,14H2c-0.743,0-1,1.267-1,2v1c0,0.733,0.257,2,1,2h1
+                                                        c0.742,0,1-1.267,1-2v-1C4,15.267,3.742,14,3,14z M8,6H7C6.257,6,6,7.267,6,8v9c0,0.733,0.257,2,1,2h1c0.742,0,1-1.267,1-2V8
+                                                        C9,7.267,8.742,6,8,6z M13,10h-1c-0.742,0-1,1.267-1,2v5c0,0.733,0.258,2,1,2h1c0.742,0,1-1.267,1-2v-5
+                                                        C14,11.267,13.742,10,13,10z M18,1h-1c-0.742,0-1,1.267-1,2v14c0,0.733,0.258,2,1,2l1.191,0.01C18.934,19.01,19,17.733,19,17V3
+                                                        C19,2.267,18.742,1,18,1z"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>

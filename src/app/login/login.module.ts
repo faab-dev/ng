@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule }      from './login-routing.module';
 import { LoginComponent } from './login.component';
+import {LanguageLoginComponent} from "../language/language-login/language-login.component";
+
 
 @NgModule({
   imports: [
@@ -10,6 +12,7 @@ import { LoginComponent } from './login.component';
     LoginRoutingModule
   ],
   declarations: [
+    LanguageLoginComponent,
     LoginComponent
   ]
 })
