@@ -32,7 +32,6 @@ const httpOptions = {
     'Content-Type': 'application/json',
     'X-API-VERSION': '1',
     'X-HRC-APP-KEY': 'e34ab8cb0c62481a1a0a0aa63a8fa344',
-    // 'Authorization': '7a67f85b-c59e-40be-91c8-29683047b750'
   })
 };
 

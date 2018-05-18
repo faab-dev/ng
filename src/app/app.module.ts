@@ -17,15 +17,12 @@ import { LoginModule }      from './login/login.module';
 // import { UsersModule }      from './users/users.module';
 import { AdminModule }      from './admin/admin.module';
 
-import { ComposeMessageComponent } from './compose-message/compose-message.component';
+// import { ComposeMessageComponent } from './compose-message/compose-message.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-import { DialogService }           from './dialog.service';
-import { ConfigComponent } from './config/config.component';
-import { LanguageModule } from "./language/language.module";
-import {LanguageLoginComponent} from "./language/language-login/language-login.component";
-import {LanguageService} from "./language/language.service";
+import {WidgetLanguageModule} from "./widgets/widget-language/widget-language.module";
+import {LanguageService} from "./services/language.service";
 
 @NgModule({
   imports: [
@@ -35,29 +32,20 @@ import {LanguageService} from "./language/language.service";
     NgbModule,
     FormsModule,
     HttpClientModule,
-
-    // LanguageModule,
-
     AdminModule,
-    // HotelsModule,
-    // UsersModule,
     LoginModule,
-
-
-
+    WidgetLanguageModule,
     AppRoutingModule,
     BrowserAnimationsModule,
   ],
   declarations: [
     AppComponent,
-    ComposeMessageComponent,
+    // ComposeMessageComponent,
     PageNotFoundComponent,
-    ConfigComponent,
-    // LanguageLoginComponent
   ],
   providers: [
-    DialogService,
-    LanguageService
+    LanguageService,
+
   ],
   bootstrap: [ AppComponent ]
 })

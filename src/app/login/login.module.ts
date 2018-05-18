@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LoginRoutingModule }      from './login-routing.module';
 import { LoginComponent } from './login.component';
-import {LanguageLoginComponent} from "../language/language-login/language-login.component";
+import {LanguageLoginComponent} from "../widgets/widget-language/language-login/language-login.component";
 
 
 @NgModule({

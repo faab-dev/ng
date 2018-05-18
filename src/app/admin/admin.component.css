@@ -1,0 +1,8 @@
+#container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh);
+  min-height: calc(100vh);
+  background: #f1f0f5;
+
+}

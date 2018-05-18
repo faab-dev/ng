@@ -3,14 +3,18 @@ import { Observable }           from 'rxjs';
 import { CanDeactivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot }  from '@angular/router';
+import {LoginComponent} from "./login/login.component";
 
-import { UserDetailComponent } from './users/user-detail/user-detail.component';
+// @TODO change LoginComponent to other component
+// import { UserDetailComponent } from './users/user-detail/user-detail.component';
+
+
 
 @Injectable()
-export class CanDeactivateGuard implements CanDeactivate<UserDetailComponent> {
+export class CanDeactivateGuard implements CanDeactivate<LoginComponent> {
 
   canDeactivate(
-    component: UserDetailComponent,
+    component: LoginComponent,
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {

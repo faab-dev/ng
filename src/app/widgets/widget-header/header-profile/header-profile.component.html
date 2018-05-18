@@ -1,0 +1,25 @@
+<img src="/assets/images/ic_profile_off.svg" class="top_menu_profile_img" (mouseover)="showPopover('img')" (mouseleave)="hidePopover('img')">
+<!-- data-bind="event: {mouseover: $root.enableFlag, mouseout: $root.disableFlag}" -->
+
+<div id="profile" class="popover bottom" (mouseover)="showPopover('popover')" (mouseleave)="hidePopover('popover')">
+  <div class="popover-container" *ngIf="show_popover_container">
+    <div class="popover-content">
+      <div class="arrow"></div>
+      <h3 class="popover-title">{{login}}</h3>
+      <!-- data-bind="text: $root.login" -->
+      <ul class="popover_content_1">
+        <li class="item popover_content_2">
+          <a class="item popover_content_3" href="#" (click)="onClickChangePassword($event)">Поменять пароль</a>
+          <!-- data-bind="i18n: lang, iText:'page_change_pass', click: $root.eventClickShowModalUserEdit.bind($data, $root.lang())"-->
+        </li>
+        <li class="item item-separator popover_content_2">
+          <span class="popover_content_3"></span>
+        </li>
+        <li class="item popover_content_2">
+          <a class="item popover_content_3" href="#" (click)="onClickLogout($event)">Выйти</a>
+          <!-- data-bind="i18n: lang, iText:'page_logout', click: userLogout.bind($data, $root.lang())" -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

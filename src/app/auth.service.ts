@@ -3,21 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {tap, delay, catchError, map} from 'rxjs/operators';
 
-export class loggedUser {
-  id: string;
-  status: string;
-  name: string;
-  type: string;
-  login: string;
-  appID: string;
-  partnerID: string | null;
-  hotelID: string | null;
-  access: object[];
-  roles: object[];
-  whenCreated: number;
-  whenUpdated: number;
-}
-
+import {User} from './models/User';
 import {environment} from "../environments/environment";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MessageService} from "./message.service";
@@ -41,12 +27,12 @@ export class AuthService {
   private url:string;
 
 
-  user_id:string | boolean;
-  roles:object[] | boolean;
-  access:object[] | boolean;
-  type:string | boolean;
-  login:string | boolean;
-  accessToken:string |boolean;
+  user_id:string;
+  roles:object[];
+  access:object[];
+  type:string;
+  login:string;
+  accessToken:string;
 
 
   constructor(
@@ -57,15 +43,14 @@ export class AuthService {
   }
 
   /** GET user by id. Will 404 if id not found */
-  getUser(id: string, accessToken:string): Observable<loggedUser> {
+  getUser(id: string, accessToken:string): Observable<User> {
 
     let url = `${this.url+'/'+this.url_get_user}/${id}`,
       httpOptions_access = httpOptions;
-
     httpOptions_access.headers = httpOptions_access.headers.set('Authorization', accessToken);
-    return this.http.get<loggedUser>(url, httpOptions_access).pipe(
+    return this.http.get<User>(url, httpOptions_access).pipe(
       tap(_ => this.log(`fetched user id=${id}`)),
-      catchError(this.handleError<loggedUser>(`getUser id=${id}`))
+      catchError(this.handleError<User>(`getUser id=${id}`))
     );
 
   }
@@ -114,13 +99,22 @@ export class AuthService {
     }
   }
 
+  getAccessToken():string {
+    return this.accessToken;
+  }
+
+  getLogin():string {
+    return this.login;
+  }
+
+
   private resetAuthData(){
-    this.user_id = false;
-    this.roles = false;
-    this.access = false;
-    this.login = false;
-    this.type = false;
-    this.accessToken = false;
+    this.user_id = '';
+    this.roles = [];
+    this.access = [];
+    this.login = '';
+    this.type = '';
+    this.accessToken = '';
   }
 
   logout(): void {
