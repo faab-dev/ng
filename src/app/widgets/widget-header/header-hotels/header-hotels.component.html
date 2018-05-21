@@ -1,6 +1,6 @@
 <div class="select-hotels">
   <select #selectHotel class="form-control" (change)="onChange(selectHotel.value)">
-    <option value="" [selected]="selected_hotel_id === ''">Выбирете отель: </option>
+    <option value="" [selected]="selected_hotel_id === ''">{{'header.hotel' | translate}}</option>
     <option *ngFor="let select_hotel of select_hotels$ | async" value="{{select_hotel.id}}" [selected]="selected_hotel_id === select_hotel.id" [innerText]="getName(select_hotel.name)"></option>
   </select>
 </div>

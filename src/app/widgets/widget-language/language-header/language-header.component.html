@@ -1,15 +1,12 @@
-<img src="/assets/images/ic_{{current_language.id}}_off.svg"  class="top_menu_lang_img" (mouseover)="showPopover('img')" (mouseleave)="hidePopover('img')" />
-<!--data-bind="attr:{ src: './public/images/ic_'+$root.lang()+'_off.svg'}, event: {mouseover: $root.enableFlag, mouseout: $root.disableFlag}"-->
+<img src="/assets/images/ic_{{current_language.id}}_off.svg"  class="top_menu_lang_img" (mouseover)="showPopover('img')" (mouseleave)="hidePopover('img')" title="{{'header.lang' | translate}}" alt="{{'header.lang' | translate}}"/>
 <div id="language" class="popover bottom" (mouseover)="showPopover('popover')" (mouseleave)="hidePopover('popover')">
   <div class="popover-container" *ngIf="show_popover_container">
     <div class="popover-content">
       <div class="arrow"></div>
-      <h3 class="popover-title">Выбирете язык</h3>
-      <!-- data-bind="i18n: lang, iText:'login_select'" -->
+      <h3 class="popover-title">{{'header.lang' | translate}}</h3>
       <ul class="popover_content_1">
         <li class="item popover_content_2" *ngFor="let language of languages">
           <a href="#" class="popover_content_3" (click)="onClickLanguage(language, $event)">{{language.title}}</a>
-          <!-- data-bind="text: title, click: $root.clickFlag.bind( $data, $root.currentPage() )" -->
         </li>
       </ul>
     </div>

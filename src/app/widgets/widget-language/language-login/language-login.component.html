@@ -1,6 +1,6 @@
-<div class="flag-langs-container" >
+<div class="flag-langs-container">
   <div class="flag-langs" *ngFor="let language of languages" [ngClass]="{'active': isActive(language.id)}">
-    <img [src]="isActive(language.id) ? '/assets/images/flag_'+language.id+'_on.svg' : '/assets/images/flag_'+language.id+'_off.svg'" alt="{{language.title}}" title="{{language.title}}">
+    <img [src]="getLoginImageSrc(language.id)" (click)="onClickLanguage(language.id)" title="{{'login.select' | translate}}" alt="{{'login.select' | translate}}">
   </div>
 </div>
 

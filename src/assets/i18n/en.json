@@ -1,0 +1,16 @@
+{
+  "login": {
+    "title": "Login to members area",
+    "select": "Select language",
+    "login": "Login",
+    "pass": "Password",
+    "enter": "Enter"
+  },
+  "header": {
+    "hotel": "Select hotel:",
+    "lang": "Select language",
+    "profile": "Profile",
+    "pass": "Change password",
+    "logout": "Logout"
+  }
+}

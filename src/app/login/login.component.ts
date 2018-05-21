@@ -2,6 +2,8 @@ import { Component }   from '@angular/core';
 import { Router} from '@angular/router';
 import { AuthService } from '../auth.service';
 
+import {TranslateService} from '@ngx-translate/core';
+
 
 import {authResponce, LoginService, Login} from "./login.service";
 
@@ -25,8 +27,15 @@ export class LoginComponent {
     public router: Router,
     private modelService: LoginService,
     // private route: ActivatedRoute
+    public translate: TranslateService
   ) {
     this.languages = environment.languages;
+
+    this.translate.addLangs(['en', 'ru'] );
+    this.translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|ru/) ? browserLang : 'en');
   }
 
   onLogIn(login: string, password: string, $event) {
@@ -94,6 +103,8 @@ export class LoginComponent {
 
       });
   }
+
+
 
   logout() {
     this.authService.logout();

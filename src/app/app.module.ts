@@ -1,9 +1,10 @@
-import { NgModule }       from '@angular/core';
-// import { CommonModule }   from '@angular/common';
+import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule }  from '@angular/platform-browser';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { FormsModule }    from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClient, HttpClientModule }    from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Diagnostic only: inspect router configuration
@@ -13,25 +14,30 @@ import { AppComponent }         from './app.component';
 import { AppRoutingModule }     from './app-routing.module';
 
 import { LoginModule }      from './login/login.module';
-// import { HotelsModule }    from './hotels/hotels.module';
-// import { UsersModule }      from './users/users.module';
 import { AdminModule }      from './admin/admin.module';
-
-// import { ComposeMessageComponent } from './compose-message/compose-message.component';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {WidgetLanguageModule} from "./widgets/widget-language/widget-language.module";
 import {LanguageService} from "./services/language.service";
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   imports: [
-    // CommonModule,
-
     BrowserModule,
     NgbModule,
     FormsModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     AdminModule,
     LoginModule,
     WidgetLanguageModule,
@@ -40,12 +46,10 @@ import {LanguageService} from "./services/language.service";
   ],
   declarations: [
     AppComponent,
-    // ComposeMessageComponent,
     PageNotFoundComponent,
   ],
   providers: [
-    LanguageService,
-
+    LanguageService
   ],
   bootstrap: [ AppComponent ]
 })

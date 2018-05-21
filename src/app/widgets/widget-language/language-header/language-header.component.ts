@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Language} from "../../../models/Language";
 import {LanguageService} from "../../../services/language.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-language-header',
@@ -15,9 +16,11 @@ export class LanguageHeaderComponent implements OnInit {
   private on_popover:boolean = false;
 
   constructor(
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    public translate: TranslateService
   ) {
     this.current_language = this.languageService.current_language;
+    this.translate.use(this.current_language.id);
     this.languages = this.languageService.getLanguages();
   }
 
@@ -29,6 +32,7 @@ export class LanguageHeaderComponent implements OnInit {
       $event.preventDefault();
     }
     this.current_language = this.languageService.current_language = language;
+    this.languageService.setLanguage(language.id);
     console.log("Language is setted. Current Language is "+language.title);
   }
 

@@ -6,10 +6,25 @@ import {LanguageHeaderComponent} from "../widget-language/language-header/langua
 import { HeaderProfileComponent } from './header-profile/header-profile.component';
 import { HeaderHotelsComponent } from './header-hotels/header-hotels.component';
 import {HotelService} from "../../services/hotel.service";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {HttpClient} from "@angular/common/http";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   imports: [
     CommonModule,
-    WidgetLanguageModule
+    WidgetLanguageModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   declarations: [
     HeaderProfileComponent,

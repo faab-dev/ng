@@ -1,14 +1,23 @@
 .flag-langs-container {
   width: 100%;
   margin: 2% auto;
+  position: relative;
 }
 
 .flag-langs {
   display: inline-block;
   width: 40px;
   margin-right: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.flag-langs.active {
+  cursor: default;
 }
 
 .flag-langs img {
   width: 100%;
 }
+
+

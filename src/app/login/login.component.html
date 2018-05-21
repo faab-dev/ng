@@ -21,21 +21,21 @@
                 <!-- /div.enter-langs -->
 
                 <div class="login-title">
-                  <span >Вход в личный кабинет</span> <!--data-bind="i18n: $root.lang, iText:'login_title'" -->
+                  <span i18n>{{ 'login.title' | translate }}</span> <!--data-bind="i18n: $root.lang, iText:'login_title'" -->
                   <span class="login-line"></span>
                 </div>
 
                 <div class="login-inputs-wrapper">
                   <div>
-                    <input #login (keyup.enter)="onLogIn(login.value, password.value)" placeholder="Login" type="text" class="form-control client-name input adaptive">
+                    <input #login (keyup.enter)="onLogIn(login.value, password.value, false)" placeholder="{{'login.login' | translate}}" type="text" class="form-control client-name input adaptive">
                   </div>
 
                   <div>
-                    <input #password (keyup.enter)="onLogIn(login.value, password.value)" placeholder="Password" type="password" class="form-control client-password input adaptive">
+                    <input #password (keyup.enter)="onLogIn(login.value, password.value, false)" placeholder="{{'login.password' | translate}}" type="password" class="form-control client-password input adaptive">
                   </div>
 
                   <div>
-                    <button (click)="onLogIn(login.value, password.value, $event)" class="btn btn-primary submit adaptive small-text">Login</button>
+                    <button (click)="onLogIn(login.value, password.value, $event)" class="btn btn-primary submit adaptive small-text" >{{'login.enter' | translate}}</button>
                   </div>
                 </div>
 

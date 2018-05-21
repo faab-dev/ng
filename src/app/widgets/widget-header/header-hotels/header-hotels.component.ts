@@ -5,6 +5,8 @@ import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/index";
 import {HotelService} from "../../../services/hotel.service";
+import {TranslateService} from "@ngx-translate/core";
+import {LanguageService} from "../../../services/language.service";
 
 @Component({
   selector: 'app-header-hotels',
@@ -19,9 +21,12 @@ export class HeaderHotelsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    public translate: TranslateService,
+    private language: LanguageService
   ) {
     this.selected_hotel_id = this.hotelService.selected_hotel_id;
+    this.translate.use(this.language.getCurrentLanguageId());
   }
 
   ngOnInit() {
@@ -35,10 +40,9 @@ export class HeaderHotelsComponent implements OnInit {
   }
 
   getName(hotel_name:I18n[]):string{
-    var current_language = 'ru';
     for (var i = 0; i < hotel_name.length; i++) {
       let item = hotel_name[i];
-      if( !item.language || typeof item.value !== 'string' || item.language !== current_language ){
+      if( !item.language || typeof item.value !== 'string' || item.language !== this.translate.currentLang ){
         continue;
       }
       return item.value;

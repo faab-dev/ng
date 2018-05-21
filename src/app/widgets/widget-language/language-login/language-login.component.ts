@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Language} from '../../../models/Language'
 import {LanguageService} from "../../../services/language.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-language-login',
@@ -9,14 +10,11 @@ import {LanguageService} from "../../../services/language.service";
 })
 export class LanguageLoginComponent implements OnInit {
 
-  /*@Input() src:string;
-  @Input() title:string;
-  @Input() isActive:boolean;*/
-
   languages:Language[];
 
   constructor(
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    public translate: TranslateService
   ) {
     this.languages = this.languageService.getLanguages();
   }
@@ -24,8 +22,18 @@ export class LanguageLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  isActive(id:string):boolean {
+  private isActive(id:string):boolean {
     return this.languageService.isCurrentLanguage(id);
+  }
+
+  getLoginImageSrc(id:string):string {
+    return this.isActive(id) ? '/assets/images/flag_'+id+'_on.svg' : '/assets/images/flag_'+id+'_off.svg';
+  }
+
+  onClickLanguage(id:string):void {
+    console.log("onClickLanguage ");
+    console.log("id: "+id);
+    this.languageService.setLanguage(id);
   }
 
 }
