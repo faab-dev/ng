@@ -5,7 +5,7 @@ import {WidgetLanguageModule} from "../widget-language/widget-language.module";
 import {LanguageHeaderComponent} from "../widget-language/language-header/language-header.component";
 import { HeaderProfileComponent } from './header-profile/header-profile.component';
 import { HeaderHotelsComponent } from './header-hotels/header-hotels.component';
-import {HotelService} from "../../shared/services/hotel.service";
+import {HotelService} from "../../shared/service/hotel.service";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";

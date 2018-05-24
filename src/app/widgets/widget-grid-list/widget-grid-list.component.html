@@ -1,10 +1,5 @@
-<div class="grid-view" [ngClass]="{'clickable': clickable}">
+<div class="grid-view" [ngClass]="{'clickable': grid_list.clickable}">
 
-  <!--<h1>test</h1>
-  <div *ngFor="let hotel of data$ | async | async">
-    <div>{{hotel.id}}</div>
-  </div>-->
-  
   <div>Count: <span>{{count}}</span></div>
 
   <table class="items objects">
@@ -12,7 +7,7 @@
     <tr>
 
 
-      <th class="checkbox-column" data-bind="" *ngIf="checkbox_delete">
+      <th class="checkbox-column" data-bind="" *ngIf="grid_list.checkbox_delete">
         <label class="btn-checkbox active-checkbox">
           <!-- data-bind="css: {checked: $root.pagerAllCheckboxes}, click: $root.eventClickElementAllCheckboxs, visible: ( $root.helperCheckRoleActionFooter($root.content(), 'delete') )" -->
           <input value="" type="checkbox" name="" >
@@ -20,14 +15,17 @@
         </label>
       </th>
 
-      <th *ngFor="let list_item of list_items">
+      <th *ngFor="let list_item of grid_list.list_items">
         <a href="#" (click)="onClickHeaderList(list_item.key, list_item.sort, $event)" [ngClass]="{'sort-link': list_item.sort}">
           <!-- css: {asc: ($root.pagerSort() === col.key &amp;&amp; $root.pagerDirection() == 'asc'), desc: ($root.pagerSort() === col.key &amp;&amp; $root.pagerDirection() == 'desc')}" -->
           <span>{{list_item.header | translate}}</span>
         </a>
       </th>
 
-      <th class="button-column" *ngIf="operations">&nbsp;</th>
+        <th class="button-column" *ngIf="grid_list.operations">&nbsp;</th>
+
+
+
 
     </tr>
 
@@ -35,22 +33,22 @@
 
     <tbody>
 
-    <tr class="" data-bind="click: $root[body.tr_click_event]" *ngFor="let data_item of data$ | async">
+    <tr class="" data-bind="click: $root[body.tr_click_event]" *ngFor="let data_item of data$">
 
-      <td class="checkbox-column" *ngIf="checkbox_delete">
+      <td class="checkbox-column" *ngIf="grid_list.checkbox_delete">
         <label class="checkclass btn-checkbox active-checkbox" data-bind="css: {checked: ($root.pagerElementsToDelete.indexOf(tr.id) >= 0)}, click: $root.eventClickElementCheckbox, clickBubble: false">
           <input value="" type="checkbox" name="">
         </label>
       </td>
 
-      <td *ngFor="let list_item of list_items" [ngSwitch]="getTemplateName(list_item.key)">
+      <td *ngFor="let list_item of grid_list.list_items" [ngSwitch]="getTemplateName(list_item.key)">
         <app-td-text *ngSwitchCase="'text'" [data]="data_item[list_item.key]"></app-td-text>
         <app-td-i18n *ngSwitchCase="'i18n'" [data]="data_item[list_item.key]"></app-td-i18n>
       </td>
 
-      <td class="button-column" *ngIf="operations">
+      <td class="button-column" *ngIf="grid_list.operations">
 
-        <a href="#" *ngFor="let operation of operations" [ngClass]="operation.type">
+        <a href="#" *ngFor="let operation of grid_list.operations" [ngClass]="operation.type">
           <!-- data-bind="css: action_tr.type, click: $root[action_tr.func]['bind']($data, tr), clickBubble: false"  -->
           <img [src]="'/assets/images/'+operation.type+'.png'" src="" title="{{operation.title | translate}}" alt="{{operation.title | translate}}">
         </a>
@@ -65,6 +63,6 @@
 
   <app-grid-list-pager></app-grid-list-pager>
 
-  <app-grid-list-actions [actions]="actions"></app-grid-list-actions>
+  <app-grid-list-actions [actions]="grid_list.actions"></app-grid-list-actions>
 
 </div>

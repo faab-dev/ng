@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Language} from "../models/Language";
+import {Language} from "../interface/language";
 import {environment} from "../../../environments/environment";
 import {TranslateService} from "@ngx-translate/core";
 

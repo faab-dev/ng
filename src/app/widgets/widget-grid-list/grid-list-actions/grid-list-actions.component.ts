@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GridListAction} from "../../../shared/models/Hotel";
+import {GridListAction} from "../../../shared/interface/grid-list-action";
 
 @Component({
   selector: 'app-grid-list-actions',

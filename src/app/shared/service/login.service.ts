@@ -23,9 +23,9 @@ export class authResponce {
 // "settings":[],"rooms":[],"extra":"READY"}
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
-import { MessageService } from '../message.service';
+import { MessageService } from '../../message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({

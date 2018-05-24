@@ -1,4 +1,4 @@
-export class I18n {
+export interface I18n {
   id: string;
   language: string;
   value: string;

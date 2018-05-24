@@ -19,7 +19,7 @@ import { AdminModule }      from './admin/admin.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {WidgetLanguageModule} from "./widgets/widget-language/widget-language.module";
-import {LanguageService} from "./shared/services/language.service";
+import {LanguageService} from "./shared/service/language.service";
 import {WidgetNavigationLeftModule} from "./widgets/widget-navigation-left/widget-navigation-left.module";
 import {WidgetGridListModule} from "./widgets/widget-grid-list/widget-grid-list.module";
 
@@ -62,6 +62,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 export class AppModule {
   // Diagnostic only: inspect router configuration
   constructor(router: Router) {
-    console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+    // /console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
   }
 }

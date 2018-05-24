@@ -1,22 +1,13 @@
 import { Injectable } from '@angular/core';
 import {AuthService} from "../../auth.service";
 import {environment} from "../../../environments/environment";
-import {Hotel} from "../models/Hotel";
+import {Hotel} from "../class/hotel";
 import {catchError, tap, map} from "rxjs/operators";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable, of} from "rxjs/index";
 import {HttpResponse} from "@angular/common/http/src/response";
-import {HttpParams} from "@angular/common/http/src/params";
 
-//import 'rxjs/add/operator/map';
-
-const httpHeaders = new HttpHeaders({
-  'Content-Type': 'application/json',
-  'X-API-VERSION': '1',
-  'X-HRC-APP-KEY': 'e34ab8cb0c62481a1a0a0aa63a8fa344'
-} );
-
-const httpOptions_observe = {
+const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     'X-API-VERSION': '1',
@@ -24,16 +15,6 @@ const httpOptions_observe = {
   } ),
   observe: 'response'
 };
-
-
-/*{
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'X-API-VERSION': '1',
-    'X-HRC-APP-KEY': 'e34ab8cb0c62481a1a0a0aa63a8fa344'
-  } ),
-  observe: 'response'
-};*/
 
 @Injectable({
   providedIn: 'root'
@@ -52,11 +33,11 @@ export class HotelService {
   }
 
   private getHeaders(without_authorization?:boolean):HttpHeaders {
-    let httpHeaders_clone = Object.assign({}, httpHeaders);
+    let httpOptions_clone = Object.assign({}, httpOptions);
     if( without_authorization ){
-      return httpHeaders_clone;
+      return httpOptions.headers;
     }
-    return httpHeaders_clone.set('Authorization', this.authService.getAccessToken());
+    return httpOptions.headers.set('Authorization', this.authService.getAccessToken());
   }
 
   getHotels (): Observable<Hotel[]> {
@@ -67,12 +48,6 @@ export class HotelService {
       .pipe(
         tap(hotels => {
           console.log('hotels (select) are loaded');
-
-          /*let headers  = hotels.headers.get('X-TOTAL-COUNT');
-          console.log("headers");
-          console.log(headers);
-          debugger;*/
-
         }),
         catchError(this.handleError('getHotels', []))
       );

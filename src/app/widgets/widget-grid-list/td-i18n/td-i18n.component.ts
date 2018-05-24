@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {I18n} from "../../../shared/models/I18n";
+import {I18n} from "../../../shared/interface/i18n";
 
 @Component({
   selector: 'app-td-i18n',

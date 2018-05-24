@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Language} from '../../../shared/models/Language'
-import {LanguageService} from "../../../shared/services/language.service";
+import {Language} from '../../../shared/interface/language'
+import {LanguageService} from "../../../shared/service/language.service";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({

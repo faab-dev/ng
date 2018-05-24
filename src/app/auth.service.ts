@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {tap, delay, catchError, map} from 'rxjs/operators';
 
-import {User} from './shared/models/User';
+import {User} from './shared/class/user';
 import {environment} from "../environments/environment";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MessageService} from "./message.service";

@@ -3,8 +3,9 @@ import { switchMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
-import {Hotel, GridList} from "../../shared/models/Hotel";
-import {HotelService} from "../../shared/services/hotel.service";
+import {Hotel} from "../../shared/class/hotel";
+import {GridList} from "../../shared/interface/grid-list";
+import {HotelService} from "../../shared/service/hotel.service";
 
 @Component({
   selector: 'app-hotels',
@@ -43,7 +44,10 @@ export class HotelsComponent implements OnInit {
         { class: 'btn-success', title: 'grid_list.actions.add.title', title_alt: 'grid_list.actions.add.title_alt' },
         { class: 'btn-danger', title: 'grid_list.actions.delete.title', title_alt: 'grid_list.actions.delete.title_alt' }
       ],
-      data: this.hotels$
+      sort: {
+        key: 'whenUpdated',
+        direction: 'desc'
+      }
     }
   }
 

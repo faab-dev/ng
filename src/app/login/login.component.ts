@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 import {TranslateService} from '@ngx-translate/core';
 
 
-import {authResponce, LoginService, Login} from "./login.service";
+import {authResponce, LoginService, Login} from "../shared/service/login.service";
 
 import {environment} from "../../environments/environment";
 
