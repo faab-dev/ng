@@ -1,0 +1,175 @@
+.grid-view {
+  padding: 15px 0;
+}
+
+.grid-view table.items {
+  background: 0 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+/*thead*/
+
+th {
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-weight: 700;
+  background: #5f5e5e;
+  text-align: center;
+  /*font-size: 1.4em;*/
+  white-space: nowrap;
+  color: #fff;
+  font-size: 16px;
+}
+
+th.checkbox-column {
+  width: 60px;
+}
+
+.button-column {
+  text-align: center;
+  white-space: nowrap;
+  width: 60px;
+}
+
+th:first-child {
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-top-left-radius: 4px;
+  -ms-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+th:last-child {
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-top-right-radius: 4px;
+  -ms-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+th a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: .7em 1em;
+}
+
+th a>span {
+  position: relative;
+  padding: 0 20px;
+}
+
+
+th.checkbox-column .btn-checkbox {
+  line-height: normal;
+  height: 23px;
+  background-position: 0 -1px;
+  padding: 0;
+}
+
+
+th.checkbox-column .btn-checkbox {
+  background-color: #fff;
+  margin-bottom: -6px;
+}
+
+
+/*checkbox*/
+input[type=checkbox], input[type=radio] {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type=checkbox], input[type=radio] {
+  margin: 4px 0 0;
+  line-height: normal;
+}
+
+.btn-checkbox input[type=checkbox], .btn-radio input[type=radio], .input-checkbox-extender {
+  position: absolute;
+  left: -9999px;
+}
+
+label {
+  font-size: 1.2em;
+  display: inline-block;
+  width: 27%;
+}
+
+.btn-checkbox, .btn-checkbox-extender, .btn-radio {
+  cursor: pointer;
+  overflow: hidden;
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  line-height: 25px;
+  height: 25px;
+  min-width: 23px;
+  background: transparent url(/assets/images/check_btn.png) no-repeat;
+  background-position: 0 0;
+}
+
+label.btn-checkbox {
+  width: auto;
+}
+
+
+/*button-column*/
+.button-column {
+  text-align: center;
+  white-space: nowrap;
+  width: 60px;
+}
+
+td.button-column a img {
+  width: 16px;
+  border: 0;
+}
+
+
+
+/*tbody*/
+
+td {
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 13px;
+  border: 1px solid #5f5e5e;
+  border-width: 1px 0 0 0;
+  padding: .7em .3em;
+  vertical-align: middle;
+  height: 39px;
+}
+
+
+
+td:first-child {
+  border-width: 1px 0 0 1px;
+}
+
+td:last-child {
+  border-width: 1px 1px 0 0;
+}
+
+tr:last-child td {
+  border-width: 1px 0 1px 0;
+}
+
+tr:last-child td:first-child {
+  border-width: 1px 0 1px 1px;
+}
+
+tr:last-child td:last-child {
+  border-width: 1px 1px 1px 0;
+}
+
+
+.grid-view.clickable table.items tbody tr td {
+  cursor: pointer;
+}

@@ -7,10 +7,36 @@
     "enter": "Enter"
   },
   "header": {
-    "hotel": "Select hotel:",
+    "hotel": "Select hotel",
     "lang": "Select language",
     "profile": "Profile",
     "pass": "Change password",
     "logout": "Logout"
+  },
+  "navigation": {
+    "left": {
+      "admin": {
+        "title_alt": {
+          "active": "Hide menu",
+          "inactive": "Show"
+        },
+        "main_menu": "Main menu",
+        "hotels": "Hotels",
+        "motivations": "Motivations",
+        "users": "Users",
+        "configuration": "Configuration",
+        "import": "Import"
+      }
+    }
+  },
+  "hotels": {
+    "id": "ID",
+    "name": "Name"
+  },
+  "grid_list": {
+    "operations": {
+      "copy": "Copy",
+      "edit": "Edit"
+    }
   }
 }

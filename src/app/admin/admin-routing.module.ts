@@ -7,6 +7,7 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageHotelsComponent } from './manage-hotels/manage-hotels.component';
 
 import { AuthGuard }                from '../auth-guard.service';
+import {HotelsComponent} from "./hotels/hotels.component";
 
 const adminRoutes: Routes = [
   {
@@ -18,10 +19,10 @@ const adminRoutes: Routes = [
         path: '',
         canActivateChild: [AuthGuard],
         children: [
-          { path: 'users', component: ManageUsersComponent },
-          { path: 'hotels', component: ManageHotelsComponent },
+          { path: 'users/:page', component: ManageUsersComponent },
+          // { path: 'hotels', redirectTo: 'hotels/1' },
           { path: 'dashbord', component: AdminDashbordComponent},
-          { path: '', redirectTo: 'dashbord', pathMatch: 'full'}
+          { path: '', redirectTo: '/admin/hotels/1', pathMatch: 'full'}
         ]
       }
 

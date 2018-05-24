@@ -60,7 +60,11 @@ export class LoginComponent {
 
         console.log("postSignIn");
 
-        if(!authResponce.accessToken || !authResponce.userID) {
+        console.log("authResponce");
+        console.log(authResponce);
+
+
+        if(!authResponce || !authResponce.accessToken || !authResponce.userID) {
           // @TODO Develop error handler
           console.log("wrong access token");
           this.logout();
@@ -98,6 +102,11 @@ export class LoginComponent {
         window.localStorage.token = JSON.stringify({ accessToken: authResponce.accessToken, id: authResponce.userID });
 
         let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/admin/hotels';
+
+        /*let navigationExtras: NavigationExtras = {
+          queryParams: { 'session_id': sessionId },
+          fragment: 'anchor'
+        };*/
 
         this.router.navigate([redirect]);
 

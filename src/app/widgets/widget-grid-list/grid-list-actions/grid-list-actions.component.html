@@ -1,0 +1,4 @@
+<div class="grid-actons">
+  <a class="button input-medium" href="#" *ngFor="let action of actions" [ngClass]="action.class" title="{{action.title_alt | translate}}">{{action.title | translate}}</a>
+  <!-- data-bind="i18n: $root.lang, iText: 'i18n_'+action_footer.type, iTitle: action_footer.title, css: $root.actionGetClassForButtons(action_footer.class, $root.page_disabled()), click: $root[action_footer.func]" -->
+</div>

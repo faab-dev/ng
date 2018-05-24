@@ -1,0 +1,53 @@
+<div id="slide-bar">
+  <div class="main_menu">
+
+    <ul id="menu_left_outside">
+      <!-- data-bind="visible: ($root.innerMenuContent().indexOf($root.content()) < 0)" -->
+
+      <li>
+        <a href="#" (click)="onClickMenuItem('main_menu', $event)" title="{{ getTitle() | translate}}" alt="">
+          <div >{{'navigation.left.admin.main_menu' | translate}}</div>
+        </a>
+      </li>
+
+      <li class="menu_items">
+        <ul [@menuState]="state">
+
+          <li *ngFor="let menu_item of menu_items" [ngClass]="{'active': isActive(menu_item)}">
+            <!-- data-bind="css: {active: $root.content() == $data}"  -->
+            <a href="#" (click)="onClickMenuItem(menu_item, $event)">{{'navigation.left.admin.'+menu_item | translate}}</a> <!-- $root.currentPage() -->
+            <!--data-bind="i18n: $root.lang, iText: $data, click: $root.switchContent.bind($data, $root.lang(), 1, false, 'list', false )"-->
+          </li>
+
+
+
+          <!--<li class="" data-bind="css: {active: $root.content() == $data}">
+            <a href="#" data-bind="i18n: $root.lang, iText: $data, click: $root.switchContent.bind($data, $root.lang(), 1, false, 'list', false )">Заявки (на подключение)</a> &lt;!&ndash; $root.currentPage() &ndash;&gt;
+          </li>
+
+
+
+          <li class="" data-bind="css: {active: $root.content() == $data}">
+            <a href="#" data-bind="i18n: $root.lang, iText: $data, click: $root.switchContent.bind($data, $root.lang(), 1, false, 'list', false )">Пользователи</a> &lt;!&ndash; $root.currentPage() &ndash;&gt;
+          </li>
+
+
+
+          <li class="" data-bind="css: {active: $root.content() == $data}">
+            <a href="#" data-bind="i18n: $root.lang, iText: $data, click: $root.switchContent.bind($data, $root.lang(), 1, false, 'list', false )">Настройки</a> &lt;!&ndash; $root.currentPage() &ndash;&gt;
+          </li>
+
+
+
+          <li class="" data-bind="css: {active: $root.content() == $data}">
+            <a href="#" data-bind="i18n: $root.lang, iText: $data, click: $root.switchContent.bind($data, $root.lang(), 1, false, 'list', false )">Импорт</a> &lt;!&ndash; $root.currentPage() &ndash;&gt;
+          </li>-->
+
+        </ul>
+      </li>
+
+    </ul>
+
+  </div>
+</div>
+<!-- /div#slide-bar -->

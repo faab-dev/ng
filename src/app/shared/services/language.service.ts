@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Language} from "../models/Language";
-import {environment} from "../../environments/environment";
+import {environment} from "../../../environments/environment";
 import {TranslateService} from "@ngx-translate/core";
 
 @Injectable({

@@ -1,0 +1,34 @@
+<div class="pager" data-bind="visible: ( $root.pagerCount() > $root.pagerItemsPerPage() )" style="display: none;">
+  <ul class="yiiPager">
+    <li class="first disabled" data-bind="css: {disabled: $root.pagerCurrentPage() == 1}, click: $root.dataPagerGet.bind($data, 1), clickBubble: false">
+      <a href="#">
+        &lt;&lt; <span data-bind="i18n: $root.lang, iText: 'page_pager_first'">Первая</span>
+      </a>
+    </li>
+    <li class="previousYii disabled" data-bind="css: {disabled: $root.pagerCurrentPage() == 1},
+                                                click: $root.dataPagerGet.bind($data, ($root.pagerCurrentPage() - 1), $root.lang() )">
+      <a href="#">
+        &lt; <span data-bind="i18n: $root.lang, iText: 'page_pager_previous'">Предыдущая</span>
+      </a>
+    </li>
+
+    <!-- ko foreach: {data: $root.pager_elements, as: 'page'} -->
+    <li class="page selected" data-bind="css: {selected: page == $root.pagerCurrentPage()}">
+      <a href="#" data-bind="text: page, click: $root.dataPagerGet.bind($data, page, $root.lang() )">1</a>
+    </li>
+    <!-- /ko -->
+
+    <li class="nextYii disabled" data-bind="css: {disabled: $root.pagerCurrentPage() == $root.pagerPagesTotal()},
+                                                click: $root.dataPagerGet.bind($data, ($root.pagerCurrentPage() + 1), $root.lang() )">
+      <a href="#">
+        <span data-bind="i18n: $root.lang, iText: 'page_pager_next'">Следующая</span> &gt;
+      </a>
+    </li>
+    <li class="last disabled" data-bind="css: {disabled: $root.pagerCurrentPage() == $root.pagerPagesTotal()},
+                                                click: $root.dataPagerGet.bind($data, $root.pagerPagesTotal(), $root.lang() )">
+      <a href="#">
+        <span data-bind="i18n: $root.lang, iText: 'page_pager_last'">Последняя</span> &gt;&gt;
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {I18n} from "../../../models/I18n";
-import {Hotel} from "../../../models/Hotel";
+import {I18n} from "../../../shared/models/I18n";
+import {Hotel} from "../../../shared/models/Hotel";
 import {map} from "rxjs/operators";
 import {ActivatedRoute} from "@angular/router";
 import {Observable} from "rxjs/index";
-import {HotelService} from "../../../services/hotel.service";
+import {HotelService} from "../../../shared/services/hotel.service";
 import {TranslateService} from "@ngx-translate/core";
-import {LanguageService} from "../../../services/language.service";
+import {LanguageService} from "../../../shared/services/language.service";
 
 @Component({
   selector: 'app-header-hotels',
