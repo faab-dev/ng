@@ -48,7 +48,7 @@
 
       <td class="button-column" *ngIf="grid_list.operations">
 
-        <a href="#" *ngFor="let operation of grid_list.operations" [ngClass]="operation.type">
+        <a href="#" *ngFor="let operation of grid_list.operations" [ngClass]="operation.type" (click)="onClickOperation(operation.type, data_item, $event)">
           <!-- data-bind="css: action_tr.type, click: $root[action_tr.func]['bind']($data, tr), clickBubble: false"  -->
           <img [src]="'/assets/images/'+operation.type+'.png'" src="" title="{{operation.title | translate}}" alt="{{operation.title | translate}}">
         </a>
@@ -61,7 +61,7 @@
 
   </table>
 
-  <app-grid-list-pager></app-grid-list-pager>
+  <app-grid-list-pager [count_total]="count" [max]="max" [page]="page"></app-grid-list-pager>
 
   <app-grid-list-actions [actions]="grid_list.actions"></app-grid-list-actions>
 

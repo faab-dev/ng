@@ -8,6 +8,8 @@ import { HttpClient, HttpClientModule }    from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Diagnostic only: inspect router configuration
+
+
 import { Router } from '@angular/router';
 
 import { AppComponent }         from './app.component';

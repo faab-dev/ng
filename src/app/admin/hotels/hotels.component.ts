@@ -63,6 +63,10 @@ export class HotelsComponent implements OnInit {
     this.grid_list.data = this.hotels$;*/
   }
 
+  onClickEdit():void {
+
+  }
+
 
 
 }

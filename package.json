@@ -28,11 +28,12 @@
     "@ng-bootstrap/ng-bootstrap": "^2.0.0",
     "@ngx-translate/core": "^10.0.1",
     "@ngx-translate/http-loader": "^3.0.1",
+    "@types/googlemaps": "^3.30.8",
     "angular-in-memory-web-api": "^0.6.0",
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
     "normalize.css": "^8.0.0",
-    "npm": "^6.0.1",
+    "npm": "^6.1.0",
     "rxjs": "^6.0.0-ucandoit-rc.6",
     "zone.js": "^0.8.24"
   },

@@ -20,19 +20,20 @@ export class WidgetGridListComponent  implements OnInit {
   @Input() grid_list:GridList;
   data$:any[];
 
-  private page:number;
-  private max:number = 10;
-  private count:number;
+  page:number;
+  max:number = 10;
+  count:number;
+
+  click_event: "onClickOperation()"
 
   constructor(
     private route: ActivatedRoute/*ActivatedRoute*/,
+    private router: Router,
     private hotelService: HotelService,
   ) {
   }
 
   ngOnInit() {
-
-    this.getData();
 
     this.route.params.subscribe(params => {
 
@@ -104,6 +105,22 @@ export class WidgetGridListComponent  implements OnInit {
     }
 
     return '';
+  }
+
+  onClickOperation(type:string, item:any, $event):void{
+    if( $event ){
+      $event.preventDefault();
+    }
+    console.log("WidgetGridListComponent :: onClickOperation");
+    console.log("type: "+type);
+    if( this.grid_list.entity == 'Hotel' ){
+      if( type == 'edit' ){
+        this.router.navigate(['admin/hotels/edit/'+item.id]);
+      }
+      if( type == 'copy' ){
+        this.router.navigate(['admin/hotels/copy/'+item.id]);
+      }
+    }
   }
 
   getData() {

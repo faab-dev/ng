@@ -1,4 +1,5 @@
-<div class="pager" data-bind="visible: ( $root.pagerCount() > $root.pagerItemsPerPage() )" style="display: none;">
+<div class="pager">
+  <!-- data-bind="visible: ( $root.pagerCount() > $root.pagerItemsPerPage() )" style="display: none;" -->
   <ul class="yiiPager">
     <li class="first disabled" data-bind="css: {disabled: $root.pagerCurrentPage() == 1}, click: $root.dataPagerGet.bind($data, 1), clickBubble: false">
       <a href="#">

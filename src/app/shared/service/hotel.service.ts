@@ -22,6 +22,7 @@ const httpOptions = {
 export class HotelService {
 
   private url_get_hotels:string = 'hotels';
+  private url_get_hotel:string = 'hotel';
   private url:string;
   selected_hotel_id:string = '';
 
@@ -53,6 +54,13 @@ export class HotelService {
       );
   }
 
+  getHotel (hotel_id:string): Observable<Hotel> {
+    console.log("HotelService :: getHotels");
+    let url = this.url+'/'+this.url_get_hotel+'/'+hotel_id;
+
+    return this.http.get<Hotel>(url,  {headers: this.getHeaders()});
+  }
+
   // : Observable<any>
   getList (first:number, max:number): Observable<HttpResponse<Hotel[]>> {
     console.log("HotelService :: getList");
@@ -61,58 +69,6 @@ export class HotelService {
 
     return  this.http.get<Hotel[]>(url,{headers: this.getHeaders(), observe: 'response' });
 
-    //return this.http.get<Config>(url, { observe: 'response' });
-
-
-    /*var header = HttpHeadersConst.set('Authorization', this.authService.getAccessToken());
-
-    console.log("header");
-    console.log(header);
-
-    /!*var hed1 = header.get('Authorization');
-
-    console.log("hed1");
-    console.log(hed1);*!/
-
-    var httpOptions1 = {
-      headers: header,
-      observe: 'response'
-    }*/
-
-
-
-
-    //return this.http.get(url, httpOptions)
-      /*.subscribe(res => {
-        this.powered = res.headers.get('X-Powered-By');
-        this.postTitle = res.body.title;
-
-        return <any>res.body;
-      });*/
-      /*.pipe(
-        tap(hotels => {
-          console.log('hotels (list) are loaded');
-          console.log("hotels");
-          console.log(hotels);
-          debugger;
-
-        }),
-        catchError(this.handleError('getList', []))
-      );*/
-      /*.map(res => {
-        return res.json().results.map(item => {
-          return new Hotel(
-            item.id,
-            item.artistName,
-            item.trackViewUrl,
-            item.artworkUrl30,
-            item.artistId
-          );
-        });
-      });*/
-      /*.map(res => {
-        let myHeader = res.headers.get('my-header');
-      })*/
   }
 
 

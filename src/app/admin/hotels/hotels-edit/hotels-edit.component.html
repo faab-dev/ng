@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>Hero Form</h1>
+  <form>
+    <div class="form-group">
+      <label for="name">Name</label>
+
+      <div *ngFor="let i18n of model.name">
+        <input type="text" class="form-control" id="name" required [(ngModel)]="i18n.value" name="name" *ngIf="isCurrentLanguage(i18n.language)">
+      </div>
+
+      <ng-template *ngFor="let i18n of model.name">
+        test
+        {{i18n.language}}
+        <!--<ng-template *ngIf="isCurrentLanguage(i18n.language)">
+          <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+        </ng-template>-->
+      </ng-template>
+      TODO: remove this: {{model.name}}
+
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input type="text" class="form-control" id="status"
+             required
+             [(ngModel)]="model.status" name="status">
+      TODO: remove this: {{model.status}}
+
+
+    </div>
+
+    <div #gmap id="gmap"></div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+    <button type="submit" class="btn btn-danger" (click)="onClickButtonBackToList()">Back to list</button>
+
+  </form>
+</div>
